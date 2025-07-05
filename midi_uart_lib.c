@@ -37,7 +37,9 @@
 #include "ring_buffer_lib.h"
 #include "midi_uart_lib.h"
 
+#ifndef MIDI_UART_RING_BUFFER_LENGTH
 #define MIDI_UART_RING_BUFFER_LENGTH 128
+#endif
 typedef struct MIDI_UART_S {
     // UART selection and pin mapping.
     uart_inst_t *midi_uart;
