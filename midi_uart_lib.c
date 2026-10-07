@@ -149,6 +149,17 @@ uint8_t midi_uart_poll_rx_buffer(void *instance, uint8_t* buffer, RING_BUFFER_SI
     return ring_buffer_pop(&midi_uart->midi_uart_rx, buffer, buflen);
 }
 
+void midi_uart_flush_rx_buffer(void *instance)
+{
+    MIDI_UART_T *midi_uart = (MIDI_UART_T *)instance;
+    uint8_t val;
+
+    // keep removing bytes till there are none left
+    if(!ring_buffer_is_empty(&midi_uart->midi_uart_rx)) {
+        ring_buffer_pop(&midi_uart->midi_uart_rx, &val, 1);
+    }
+}
+
 uint8_t midi_uart_write_tx_buffer(void* instance, const uint8_t* buffer, RING_BUFFER_SIZE_TYPE buflen)
 {
     MIDI_UART_T *midi_uart = (MIDI_UART_T *)instance;

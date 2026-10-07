@@ -56,6 +56,14 @@ void *midi_uart_configure(uint8_t uartnum, uint8_t txgpio, uint8_t rxgpio);
 uint8_t midi_uart_poll_rx_buffer(void *instance, uint8_t *buffer, RING_BUFFER_SIZE_TYPE buflen);
 
 /**
+ * @brief Flush the contents of the midi ring buffer
+ *
+ * @param instance is a pointer to this MIDI UART instance
+ *
+ */
+void midi_uart_flush_rx_buffer(void *instance);
+
+/**
  * @brief put the bytes in buffer into the MIDI UART TX buffer
  * 
  * @param instance is a pointer to this MIDI UART instance
